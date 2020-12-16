@@ -19,7 +19,13 @@ export default function PieChart() {
         datasets: [
             {
                 data: [],
-                backgroundColor: [
+                backgroundColor: ["#2ecc71",
+                "#3498db",
+                "#95a5a6",
+                "#9b59b6",
+                "#f1c40f",
+                "#e74c3c",
+                "#34495e"
                 ]
             }],
         labels: []
@@ -29,8 +35,14 @@ export default function PieChart() {
       datasets: [
           {
               data: [],
-              backgroundColor: [
-              ]
+              backgroundColor: ["#2ecc71",
+              "#3498db",
+              "#95a5a6",
+              "#9b59b6",
+              "#f1c40f",
+              "#e74c3c",
+              "#34495e"
+              ]  
           }],
       labels: []
     };
@@ -55,7 +67,7 @@ export default function PieChart() {
                 for (var i = 0; i < res.data.length; i++) {
                     dataSource.datasets[0].data[i] = res.data[i].budget;
                     dataSource.labels[i] = res.data[i].budgetName;
-                    dataSource.datasets[0].backgroundColor[i]='#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+                    //dataSource.datasets[0].backgroundColor[i]='#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
                     bNames.push(res.data[i].budgetName);
                     bData.push(res.data[i].budget);
                 }
@@ -68,7 +80,12 @@ export default function PieChart() {
                     createChart();
                 }
                
+            }).catch(err=>{
+              if (err.response) {
+                err.response.data.msg&&setError(err.response.data.msg);
+              }
             })
+        
             function createChart() {
                 var ctx = document.getElementById("myChart").getContext("2d");
                 var myPieChart = new Chart(ctx, {
@@ -81,7 +98,9 @@ export default function PieChart() {
                       }
                     }
                 });
-              }
+            }
+
+
 
             axios.get('http://localhost:5000/expenses/getTimedExpenses',{params:{
                       'month':month,
@@ -96,9 +115,10 @@ export default function PieChart() {
                     for (var i = 0; i < res.data.length; i++) {
                       eData.push(res.data[i].expense);
                       dataSourceExp.labels[i] = res.data[i].expenseName;
+                      //dataSourceExp.datasets[0].backgroundColor[i]='#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
                       dataSourceExp.datasets[0].data[i] = res.data[i].expense;
                     }
-                      dataSourceExp.datasets[0].backgroundColor = dataSource.datasets[0].backgroundColor
+                      //dataSourceExp.datasets[0].backgroundColor = dataSource.datasets[0].backgroundColor
                     setExpenseData(eData);
                   //console.log(data);
                   console.log(dataSourceExp)
@@ -107,8 +127,13 @@ export default function PieChart() {
                     createChartExp();
                   } 
                   
-                }) 
-              function createChartExp() {
+                }).catch(err=>{
+                  if (err.response) {
+                    err.response.data.msg&&setError(err.response.data.msg);
+                  }
+                })
+
+            function createChartExp() {
                   var ctx = document.getElementById("myChartExp").getContext("2d");
                   var myPieChart = new Chart(ctx, {
                       type: 'pie',
@@ -120,12 +145,12 @@ export default function PieChart() {
                         }
                       }
                   });
-                }
+            }
 
 
-              } catch (err) {
+          }catch (err) {
                       err.response.data.msg&&setError(err.response.data.msg);
-              }
+          }
 
           };
           console.log("budget data: ", budgetData);
@@ -154,7 +179,7 @@ export default function PieChart() {
             <input type="submit" value="submit" />
         </form>
 
-        {graph?(<><canvas id="myChart"></canvas></>):(<></>)}
+        {graph?(<><canvas id="myChart"></canvas></>):(<><h2>..</h2></>)}
         {graphExp?(<><canvas id="myChartExp"></canvas></>):(<><h2>No Expenses and Budgets for current Month and Year</h2></>)}
         {budgetData === undefined ?null:
         <>
