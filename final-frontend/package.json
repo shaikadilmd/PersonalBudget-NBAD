@@ -18,8 +18,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "start-server-and-test start 3000 cy:open",
+    "eject": "react-scripts eject",
+    "cy:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -38,5 +39,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@applitools/eyes-cypress": "^3.16.3",
+    "cypress": "^6.1.0",
+    "start-server-and-test": "^1.11.6"
   }
 }
