@@ -1,5 +1,5 @@
-# PersonalBudget-NBAD
-Final Project to implement Personal Budget Application 
+# PersonalBudget- App to track expenses and Budgets
+Project to implement Personal Budget Application 
 
 ## Steps to View Charts properly in the Application
 
