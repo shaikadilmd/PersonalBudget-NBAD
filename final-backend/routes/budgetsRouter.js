@@ -1,6 +1,6 @@
 const budgetRouter = require("express").Router();
 const auth = require("../middleware/auth");
-const Budget = require("../models/budgetsModel");
+const Budget = require("../Models/budgetsModel");
 
 budgetRouter.post("/", auth, async (req, res) => {
   try {
@@ -26,24 +26,7 @@ budgetRouter.post("/", auth, async (req, res) => {
   }
 });
 
-budgetRouter.get("/all", auth, async (req, res) => {
-  const budgets = await Budget.find({ userId: req.user });
-  res.json(budgets);
-});
 
-
-
-
-
-budgetRouter.delete("/:id", auth, async (req, res) => {
-  const budget = await Budget.findOne({ userId: req.user, _id: req.params.id });
-  if (!budget)
-    return res.status(400).json({
-      msg: "No Budget found with this ID that belongs to the current user.",
-    });
-  const deletedBudget = await Budget.findByIdAndDelete(req.params.id);
-  res.json(deletedBudget);
-});
 
 budgetRouter.get("/getTimedBudgets",auth,async(req,res)=>{
   const budgets=await Budget.find({userId: req.user, month:req.query.month , year:req.query.year});

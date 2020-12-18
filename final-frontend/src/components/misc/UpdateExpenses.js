@@ -4,6 +4,7 @@ import UserContext from "../../context/UserContext";
 import DashBoards from "../layout/DashBoards"
 import ErrorNotice from "./ErrorNotice";
 import Axios from 'axios';
+const SERVER_URL = require('../../config/config').SERVER_URL;
 
 export default function Expense() {
     const [expenseName,setTitle] = useState();
@@ -28,7 +29,7 @@ export default function Expense() {
 
           if(expense&&month&&year&&expenseName)
             {
-          const checkRecord = await Axios.get("http://localhost:5000/expenses/findExpense",{params:{
+          const checkRecord = await Axios.get(SERVER_URL+"/expenses/findExpense",{params:{
             'expenseName':expenseName
           },
             headers: {
@@ -38,7 +39,7 @@ export default function Expense() {
 
           console.log(checkRecord.data[0]._id)
 
-          const response = await Axios.post("http://localhost:5000/expenses/update",newExpense,{params:{
+          const response = await Axios.post(SERVER_URL+"/expenses/update",newExpense,{params:{
             '_id':checkRecord.data[0]._id
           },
             headers: {
@@ -81,7 +82,7 @@ export default function Expense() {
             {userData.user?(
             <>
             <DashBoards/>
-            <h1>Add Expense</h1>
+            <h1>choose Expense to Update</h1>
             {error && <ErrorNotice message={error} clearError={() => setError(undefined) }/>}
             <form className="form" onSubmit={submit}>
 

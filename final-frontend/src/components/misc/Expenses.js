@@ -5,6 +5,8 @@ import DashBoards from "../layout/DashBoards"
 import ErrorNotice from "./ErrorNotice";
 import Axios from 'axios';
 
+const SERVER_URL = require('../../config/config').SERVER_URL;
+
 export default function Expense() {
     const [expenseName,setTitle] = useState();
     const [month, setMonth] = useState();
@@ -23,7 +25,7 @@ export default function Expense() {
           const token=localStorage.getItem("auth-token");
           const newExpense={expense,month,year,expenseName};
           
-          const response = await Axios.post("http://localhost:5000/expenses",newExpense,{
+          const response = await Axios.post(SERVER_URL+"/expenses",newExpense,{
             headers: {
               'x-auth-token': `${token}`
             }
@@ -59,7 +61,7 @@ export default function Expense() {
             {userData.user?(
             <>
             <DashBoards/>
-            <h1>Add Expense</h1>
+            <h1>choose Expense to insert</h1>
             {error && <ErrorNotice message={error} clearError={() => setError(undefined) }/>}
             <form className="form" onSubmit={submit}>
 

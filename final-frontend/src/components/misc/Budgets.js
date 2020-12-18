@@ -5,7 +5,7 @@ import DashBoards from "../layout/DashBoards"
 import ErrorNotice from "./ErrorNotice";
 import Axios from 'axios';
 
-
+const SERVER_URL = require('../../config/config').SERVER_URL;
 
 export default function Budget() {
     const [budgetName,setTitle] =useState();
@@ -28,7 +28,7 @@ export default function Budget() {
           console.log(token);
           console.log(newBudget);
           
-          const response = await Axios.post("http://localhost:5000/budgets",newBudget,{
+          const response = await Axios.post(SERVER_URL+"/budgets",newBudget,{
             headers: {
               'x-auth-token': `${token}`
             }
@@ -69,7 +69,7 @@ export default function Budget() {
             <>
 
             <DashBoards/>
-            <h1>choose budget from below categories </h1>
+            <h1>choose budget to insert </h1>
             
             {error && <ErrorNotice message={error} clearError={() => setError(undefined) }/>}
 

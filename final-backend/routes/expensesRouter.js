@@ -1,6 +1,6 @@
 const expenseRouter = require("express").Router();
 const auth = require("../middleware/auth");
-const Expense = require("../models/expensesModel");
+const Expense = require("../Models/expensesModel");
 
 expenseRouter.post("/", auth, async (req, res) => {
   try {
@@ -25,22 +25,10 @@ expenseRouter.post("/", auth, async (req, res) => {
   }
 });
 
-expenseRouter.get("/all", auth, async (req, res) => {
-  const expenses = await Expense.find({ userId: req.user });
-  res.json(expenses);
-});
 
 
 
-expenseRouter.delete("/:id", auth, async (req, res) => {
-  const expense = await Expense.findOne({ userId: req.user, _id: req.params.id });
-  if (!expense)
-    return res.status(400).json({
-      msg: "No expense found with this ID that belongs to the current user.",
-    });
-  const deletedExpense = await Expense.findByIdAndDelete(req.params.id);
-  res.json(deletedExpense);
-});
+
 
 
 expenseRouter.get("/getTimedExpenses",auth,async(req,res)=>{

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const budgetModel = require('./models/budgetsModel');
-const UserModel = require('./models/userModel');
-const expenseModel=require('./models/expensesModel');
+const budgetModel = require('./Models/budgetsModel');
+const UserModel = require('./Models/UserModel');
+const expenseModel=require('./Models/expensesModel');
 const userData = { email: 'TekLoon', password:'password',displayName:'njkrdg' };
 let user_id='';
 describe('User Model Test', () => {

@@ -1,6 +1,8 @@
 {
   "name": "final-frontend",
+  "homepage": "./",
   "version": "0.1.0",
+  "Access-Control-Allow-Origin": "*",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",

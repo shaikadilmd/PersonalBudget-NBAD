@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import Axios from "axios";
 import ErrorNotice from "../misc/ErrorNotice";
-
+const SERVER_URL = require('../../config/config').SERVER_URL;
 export default function Login() {
 
   const [email, setEmail] = useState();
@@ -12,13 +12,14 @@ export default function Login() {
   const [error, setError] = useState();
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
+  
   const submit = async (e) => {
     e.preventDefault();
     
   
     try{
       const loginUser = { email, password };
-      const loginRes = await Axios.post("http://localhost:5000/users/login", loginUser);
+      const loginRes = await Axios.post(SERVER_URL+"/users/login", loginUser);
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,

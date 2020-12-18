@@ -4,7 +4,7 @@ import UserContext from "../../context/UserContext";
 import DashBoards from "../layout/DashBoards"
 import ErrorNotice from "./ErrorNotice";
 import Axios from 'axios';
-
+const SERVER_URL = require('../../config/config').SERVER_URL;
 
 
 export default function Budget() {
@@ -31,7 +31,7 @@ export default function Budget() {
 
             if(budget&&month&&year&&budgetName)
             {
-          const checkRecord = await Axios.get("http://localhost:5000/budgets/findBudget",{params:{
+          const checkRecord = await Axios.get(SERVER_URL+"/budgets/findBudget",{params:{
             'budgetName':budgetName
           },
             headers: {
@@ -43,7 +43,7 @@ export default function Budget() {
         console.log(checkRecord.data[0]._id)
 
           
-          const response = await Axios.put("http://localhost:5000/budgets/update/",newBudget,{params:{
+          const response = await Axios.put(SERVER_URL+"/budgets/update/",newBudget,{params:{
             '_id':checkRecord.data[0]._id
           },
             headers: {
@@ -93,7 +93,7 @@ export default function Budget() {
             <>
 
             <DashBoards/>
-            <h1>choose budget from below categories </h1>
+            <h1>choose budget to Update</h1>
             
             {error && <ErrorNotice message={error} clearError={() => setError(undefined) }/>}
 
