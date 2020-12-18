@@ -48,6 +48,7 @@ body {
 
 #sheader{
   float:right;
+  margin-bottom: 5%;
 }
 
 .button {
@@ -63,10 +64,24 @@ body {
   cursor: pointer;
 }
 
+.Homebutton {
+  font-weight: bold;
+  background-color: #df4343;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
 
 .container {
   margin: 0 auto;
-  max-width: 560px;
+  max-width: 660px;
+  padding-top: 10px;
 }
 
 
@@ -171,16 +186,27 @@ body {
   color: #ffffff;
 }
 
-
+.as1 {
+  width: 25%;
+  padding-right: 15px;
+  margin-right: 15px;
+  float: left;
+  font-style: italic;
+  background-color: lightgray;
+}
 
 #chart {
   height: 100px;
   width: 100px;
 }
 
+
+
+
 .welcome{
   margin: 10px;
   color: white;
+  float: left;
 }
 
 

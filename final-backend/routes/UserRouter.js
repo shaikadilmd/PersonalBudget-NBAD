@@ -4,9 +4,6 @@ const bcrypt = require("bcryptjs");
 const auth = require("../middleware/auth");
 const User = require("../Models/userModel"); 
 
-router.get("/test",(req,res) =>{
-res.send("Hello, its working");
-});
 
 router.post("/register",async (req,res) =>{
 

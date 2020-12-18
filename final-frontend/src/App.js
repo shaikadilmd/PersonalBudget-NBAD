@@ -45,10 +45,11 @@ function App() {
           token,
           user: userRes.data,
         });
-      }
+      }  
     };
-
     checkLoggedIn();
+
+
   }, []);
 
   return (

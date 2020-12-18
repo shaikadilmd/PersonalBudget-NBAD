@@ -15,6 +15,7 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault();
     
+  
     try{
       const loginUser = { email, password };
       const loginRes = await Axios.post("http://localhost:5000/users/login", loginUser);
@@ -23,10 +24,12 @@ export default function Login() {
         user: loginRes.data.user,
       });
       localStorage.setItem("auth-token", loginRes.data.token);
+     
       history.push("/");
     }catch(err){
       err.response.data.msg && setError(err.response.data.msg);
     }
+
 
   }; 
 
