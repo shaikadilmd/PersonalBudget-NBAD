@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.static('./client/build'));
 const PORT = process.env.PORT || 5000
 
-app.listen((PORT),() => console.log(`The server has started on port:${PORT}`));
+app.listen((PORT),() => console.log(`The server has started on ports:${PORT}`));
 
 //setup mongoose
 
@@ -19,14 +19,14 @@ app.listen((PORT),() => console.log(`The server has started on port:${PORT}`));
 
 
 
-mongoose.connect("mongodb+srv://adil:ab99087@main.ugjn9.mongodb.net/<dbname>?retryWrites=true&w=majority"
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING,
 ,{
 useNewUrlParser:true,
 useUnifiedTopology:true,
 useCreateIndex:true,
 },(err)=>{
     if(err) throw err;
-    console.log("MongoDB Connection Established");
+    console.log("MongoDB Connection Successfully Established");
 });
 
 //setup routes 

@@ -39,7 +39,7 @@ export default function Expense() {
 
           console.log(checkRecord.data[0]._id)
 
-          const response = await Axios.post(SERVER_URL+"/expenses/update",newExpense,{params:{
+          const response = await Axios.put(SERVER_URL+"/expenses/update",newExpense,{params:{
             '_id':checkRecord.data[0]._id
           },
             headers: {

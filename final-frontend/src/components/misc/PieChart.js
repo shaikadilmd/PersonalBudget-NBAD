@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Chart from 'chart.js';
 import { Bar,Line } from "react-chartjs-2";
-
+const SERVER_URL = require('../../config/config').SERVER_URL;
 export default function PieChart() {
     const [month,setMonth] =useState();
     const [year, setYear] = useState();
@@ -55,7 +55,7 @@ export default function PieChart() {
         try {
             const token=localStorage.getItem("auth-token");
             
-            axios.get('http://localhost:5000/budgets/getTimedBudgets',{params:{
+            axios.get(SERVER_URL+'/budgets/getTimedBudgets',{params:{
                 'month':month,
                 'year':year
               }, headers: {
@@ -102,7 +102,7 @@ export default function PieChart() {
 
 
 
-            axios.get('http://localhost:5000/expenses/getTimedExpenses',{params:{
+            axios.get(SERVER_URL+'/expenses/getTimedExpenses',{params:{
                       'month':month,
                       'year':year
                     },
