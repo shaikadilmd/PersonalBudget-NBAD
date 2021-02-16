@@ -23,12 +23,8 @@ export default function AuthOptions() {
       {userData.user ? (
         <>
         <Link class="Homebutton" to="/">Home/DashBoard</Link>
-        
         <h1 className="welcome">Welcome {userData.user.displayName}</h1>
-        <button onClick={logout}>Log out</button>
-        
-        
-        
+        <button onClick={logout}>Log out</button> 
         </>
         ) : (  
         <>
